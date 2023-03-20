@@ -1,29 +1,29 @@
 //import all the modules require
 const fs = require('fs');
-//Use try and catch to handle the error where ever required
-//return the callback with appropriate data where ever require in all the methods
-
-//More userdefined methods can be written if required to write the logical stuff
-
-//This method will take two parameters first the fileName
-//and second a callback 
-//read file data line by line using readLine
-//create array and push all data inside the array
-
+const readline = require('readline');
 
 const readFileContentsLineByLine = (fileName, cb) => {
- 
+    /**
+     * This method will take two parameters first the fileName and second a callback
+     * read file data line by line using readLine create array and push all data inside the array
+     * @type {*[]}
+     */
 
-  
-  let fileContents = [];
+    let fileContents = [];
 
-  const rl = readline.createInterface({
-    input: fs.createReadStream(fileName),
-    output: process.stdout,
-    terminal: false
-  });
+    const rl = readline.createInterface({
+        input: fs.createReadStream(fileName),
+        output: process.stdout,
+        terminal: false
+    });
 
+    rl.on('line', (line) => {
+        fileContents.push(line);
+    });
 
+    rl.on('close', () => {
+        cb(null, fileContents);
+    });
 }
 
 //This method will take two parameters first the filecontent
@@ -32,17 +32,17 @@ const readFileContentsLineByLine = (fileName, cb) => {
 //Filter all the records for female candidates given region as southwest.
 
 const filterFemaleCandidates = (fileContents, cb) => {
-  let filteredData ;
+    let filteredData ;
 
-  //use lodash.compact() method if required
-  
+    //use lodash.compact() method if required
+
 }
 
 //This method will write filtered data in the output file
 const writeFilteredDataToFile = (outputFileName, filteredData, cb) => {
- 
+
     //use writeFile method to write the filteredData
-  
+
 }
 
 
@@ -51,14 +51,14 @@ const writeFilteredDataToFile = (outputFileName, filteredData, cb) => {
 
 
 const readFileContentsUsingStream = (fileName, cb) => {
-  let fileContents = [];
+    let fileContents = [];
 
-  fs.createReadStream(fileName)
-    .on("error", (err) => {
-      console.log("Error while reading contents of file using streams, ERROR::", err);
-      cb("Encountered error while reading file contents using streams..!");
-    })
-   
+    fs.createReadStream(fileName)
+        .on("error", (err) => {
+            console.log("Error while reading contents of file using streams, ERROR::", err);
+            cb("Encountered error while reading file contents using streams..!");
+        })
+
 }
 
 //This method will filetDatewithNoChildren it will take two parameters
@@ -66,17 +66,17 @@ const readFileContentsUsingStream = (fileName, cb) => {
 //use map if required to filter the data
 
 const filterDataWithNoChildren = (fileContents, cb) => {
-  let filteredData ;
+    let filteredData ;
 //use lodash.compact() if required 
 
-  
+
 }
 
 
 
 
 module.exports = {
-  readFileContentsLineByLine,
-  filterFemaleCandidates,
-  readFileContentsUsingStream,
- }
+    readFileContentsLineByLine,
+    filterFemaleCandidates,
+    readFileContentsUsingStream,
+}
