@@ -49,11 +49,12 @@ const filterFemaleCandidates = (fileContents, cb) => {
     cb(null, filteredData);
 }
 
-//This method will write filtered data in the output file
 const writeFilteredDataToFile = (outputFileName, filteredData, cb) => {
+    /**
+     * This method will write filtered data in the output file
+     */
 
-    //use writeFile method to write the filteredData
-
+     fs.writeFile(outputFileName, filteredData);
 }
 
 
