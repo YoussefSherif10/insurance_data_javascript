@@ -26,16 +26,27 @@ const readFileContentsLineByLine = (fileName, cb) => {
     });
 }
 
-//This method will take two parameters first the filecontent
+//This method will take two parameters first the fileContent
 //and second the callback 
 //use map to filter the data 
 //Filter all the records for female candidates given region as southwest.
 
 const filterFemaleCandidates = (fileContents, cb) => {
-    let filteredData ;
+    /**
+     * This method will take two parameters first the fileContent and second the callback
+     * use map to filter the data
+     * Filter all the records for female candidates given region as southwest.
+     */
 
-    //use lodash.compact() method if required
+    let filteredData = fileContents.filter(line => {
+        const words = line.split(', ');
+        if ((words[1] === 'female') && (words[5] === 'southwest'))
+            return true;
+        else
+            return false;
+    });
 
+    cb(null, filteredData);
 }
 
 //This method will write filtered data in the output file
