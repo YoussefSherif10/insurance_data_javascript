@@ -73,15 +73,18 @@ const readFileContentsUsingStream = (fileName, cb) => {
 
 }
 
-//This method will filetDatewithNoChildren it will take two parameters
-//first the fileContent and second the callback
-//use map if required to filter the data
-
 const filterDataWithNoChildren = (fileContents, cb) => {
-    let filteredData ;
-//use lodash.compact() if required 
+    /**
+     * This method will filter Data with No Children it will take two parameters
+     * first the fileContent and second the callback
+     */
 
+    let filteredData = fileContents.filter(line => {
+        const words = line.split(", ");
+        return (words[4] === 'no') ? true : false;
+    });
 
+    cb(null, filteredData);
 }
 
 
